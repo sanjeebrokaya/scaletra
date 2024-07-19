@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Scaletra Adventure</title>
 </head>
@@ -208,41 +206,44 @@
 
         // Close the menu onclick on links
         const mmContentNavs = menuContent.querySelectorAll("ul li a");
-        mmContentNavs.forEach((el,_) => {
+        mmContentNavs.forEach((el, _) => {
             el.onclick = () => {
                 hideMenu();
             }
         });
-        
+
         // 
-        $(document).ready(function () {
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 0) {
-                    $('header').addClass('scrolled');
+        document.addEventListener('DOMContentLoaded', function () {
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 0) {
+                    document.querySelector('header').classList.add('scrolled');
                 } else {
-                    $('header').removeClass('scrolled');
+                    document.querySelector('header').classList.remove('scrolled');
                 }
             });
         });
 
-
-        $(document).ready(function () {
-            var $scrollTopButton = $('#scroll-top');
+        document.addEventListener('DOMContentLoaded', function () {
+            var scrollTopButton = document.getElementById('scroll-top');
 
             function toggleScrollTopButton() {
-                if ($(window).scrollTop() > 0) {
-                    $scrollTopButton.addClass('active');
+                if (window.scrollY > 0) {
+                    scrollTopButton.classList.add('active');
                 } else {
-                    $scrollTopButton.removeClass('active');
+                    scrollTopButton.classList.remove('active');
                 }
             }
-            $(window).on('scroll', toggleScrollTopButton);
-            $scrollTopButton.on('click', function (event) {
+
+            window.addEventListener('scroll', toggleScrollTopButton);
+
+            scrollTopButton.addEventListener('click', function (event) {
                 event.preventDefault();
-                $('html, body').animate({ scrollTop: 0 }, 'smooth');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
+
             toggleScrollTopButton();
         });
+
 
 
     </script>
